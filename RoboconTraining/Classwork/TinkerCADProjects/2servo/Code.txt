@@ -1,0 +1,34 @@
+#include <Servo.h>
+Servo s1;
+Servo s2;
+int input = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  s1.attach(6);
+  s2.attach(5);
+}
+
+void loop()
+{
+  s1.write(0);
+  s2.write(0);
+  
+  input=Serial.parseInt();
+  Serial.println(input);
+  
+  for(int i= 0;i<=input;i++){
+    s1.write(i);
+    delay(15);
+    s2.write(180-i);
+    delay(15);
+    
+  }
+  
+Link-https://www.tinkercad.com/things/1EHdLOoPwn2-magnificent-trug
+  
+  
+}
+
+Link-

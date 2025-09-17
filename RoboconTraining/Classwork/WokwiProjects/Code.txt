@@ -1,0 +1,32 @@
+int step =10;
+int dir = 9;
+int potPin=A4;
+int value;
+int time;
+
+void setup() {
+  pinMode(step, OUTPUT);
+  pinMode(dir,OUTPUT);
+  pinMode(potPin,INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  value=analogRead(potPin);
+  time=map(value,0,1023,500,2000);
+
+  for(int i = 0 ; i<=200 ; i++){
+
+    digitalWrite(dir, HIGH);
+    digitalWrite(step, HIGH);
+
+    delayMicroseconds(time);
+
+    digitalWrite(step, LOW);
+
+    delayMicroseconds(time);
+
+
+  }
+
+}

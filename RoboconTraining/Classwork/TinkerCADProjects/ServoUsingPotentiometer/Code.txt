@@ -1,0 +1,22 @@
+#include<Servo.h>
+
+Servo s1;
+int servoPin = 9;
+int potPin = A0;
+
+void setup()
+{
+  s1.attach(9);
+  pinMode(servoPin,OUTPUT);
+  pinMode(potPin,INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int potVal = analogRead(potPin);
+  int value = map(potVal,0,1023,0,180);
+  s1.write(value);
+}
+
+Link-https://www.tinkercad.com/things/3NLUDQeR989-dazzling-rottis-snicket

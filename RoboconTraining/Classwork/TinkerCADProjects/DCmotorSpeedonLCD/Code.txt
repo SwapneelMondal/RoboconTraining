@@ -1,0 +1,44 @@
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x20, 16, 2);
+int en = 6;
+int in1 =4;
+int in2 = 5;
+int pot = A4;
+int potval;
+int value;
+int percent;
+
+void setup()
+{
+  pinMode(en, OUTPUT);
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+  pinMode(pot,INPUT);
+  
+  lcd.init();      
+  lcd.backlight(); 
+
+  lcd.setCursor(0, 0);
+  lcd.print("RPM");
+ 
+  
+  
+  Serial.begin(9600);
+  
+}
+
+void loop()
+{
+  potval = analogRead(pot);
+  value = map(potval,0,1023,0,255);
+  percent = map(value,0,255,0,100);
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  analogWrite(en,value);
+  lcd.setCursor(0, 1);
+  lcd.print(percent);
+  lcd.print("%");
+}
+
+Link-https://www.tinkercad.com/things/9m1QB6XJog9-fantastic-densor-leelo

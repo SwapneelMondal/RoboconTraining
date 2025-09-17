@@ -1,0 +1,21 @@
+// C++ code
+//
+int switchState=2;
+void setup()
+{
+  pinMode(7, OUTPUT);
+  pinMode(A5,INPUT);
+  Serial.begin(9600);
+}
+
+  void loop()
+{
+  int pot = analogRead(A3);
+  Serial.println(pot);
+  digitalWrite(7, HIGH);//TURNS ON THE LED
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(7, LOW);//TURNS OFF THE LED
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+Link-https://www.tinkercad.com/things/llTw9ghZ69K-neat-stantia-migelo

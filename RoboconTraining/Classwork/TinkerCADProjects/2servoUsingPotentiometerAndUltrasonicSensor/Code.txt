@@ -1,0 +1,58 @@
+#include <Servo.h>
+
+Servo ultrasonicServo;
+Servo potServo;
+
+int trigPin = 9;
+int echoPin = 10;
+
+int ultrasonicServoPin = 5;
+int potServoPin = 6;
+
+int potPin = A0;
+
+void setup() {
+    ultrasonicServo.attach(ultrasonicServoPin);
+    potServo.attach(potServoPin);
+
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    pinMode(potPin, INPUT);
+
+    Serial.begin(9600);
+}
+
+int readDistance() {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    int duration = pulseIn(echoPin, HIGH);
+    int distance = duration * 0.034 / 2;
+    return distance;
+}
+
+void loop() {
+  
+    int distance = readDistance();
+    int angle1 = map(distance, 0,200, 0, 180);
+    if(angle1 < 0) angle1 = 0;
+    if(angle1 > 180) angle1 = 180;
+    ultrasonicServo.write(angle1);
+
+    int potVal = analogRead(potPin);
+    int angle2 = map(potVal, 0, 1023, 0, 180);
+    potServo.write(angle2);
+
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.print(" cm, Pot: ");
+    Serial.println(potVal);
+
+    delay(50);
+}
+
+
+Link-https://www.tinkercad.com/things/9NZSuOTTXkS-incredible-stantia

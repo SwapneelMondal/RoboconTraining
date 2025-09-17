@@ -1,0 +1,54 @@
+#include <Servo.h>
+
+Servo leftServo;
+Servo rightServo;
+
+int trigPin = 9;
+int echoPin = 10;
+
+int leftServoPin = 5;
+int rightServoPin = 6;
+
+void setup() {
+    leftServo.attach(leftServoPin);
+    rightServo.attach(rightServoPin);
+
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+
+    Serial.begin(9600);
+}
+
+int readDistance() {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    int duration = pulseIn(echoPin, HIGH);
+    int distance = duration * 0.034 / 2;
+    return distance;
+}
+
+void loop() {
+    int distance = readDistance();
+    Serial.println(distance);
+
+    if (distance > 0 && distance <= 100) {
+        leftServo.write(0);  
+    } else {
+        leftServo.write(90); 
+    }
+
+    if (distance > 100 && distance <= 200) {
+        rightServo.write(180); 
+    } else {
+        rightServo.write(90); 
+    }
+
+    delay(100);
+}
+
+
+Link-https://www.tinkercad.com/things/dIvGIhPLV53-cool-jarv-sango

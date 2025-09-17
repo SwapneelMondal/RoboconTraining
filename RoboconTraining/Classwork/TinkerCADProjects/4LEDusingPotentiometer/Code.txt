@@ -1,0 +1,56 @@
+int led1pin=2;
+int led2pin=4;
+int led3pin=7;
+int led4pin=8;
+int potpin=A1;
+
+
+
+void setup()
+{
+  pinMode(led1pin, OUTPUT);
+  pinMode(led2pin, OUTPUT);
+  pinMode(led3pin, OUTPUT);
+  pinMode(led4pin, OUTPUT);
+  pinMode(potpin, INPUT);
+  Serial.begin(9600); 
+}
+
+void loop()
+{
+  int potvalue = analogRead(potpin);
+  Serial.println(potvalue);
+  if(potvalue>0 && potvalue<=250){
+    digitalWrite(led1pin,HIGH);
+    digitalWrite(led2pin,LOW);
+    digitalWrite(led3pin,LOW);
+    digitalWrite(led4pin,LOW);
+  
+}else if(potvalue>250 && potvalue<=500){
+    digitalWrite(led1pin,HIGH);
+    digitalWrite(led2pin,HIGH);
+    digitalWrite(led3pin,LOW);
+    digitalWrite(led4pin,LOW);
+  
+}else if(potvalue>500 && potvalue<=800){
+    digitalWrite(led1pin,HIGH);
+    digitalWrite(led2pin,HIGH);
+    digitalWrite(led3pin,HIGH);
+    digitalWrite(led4pin,LOW);
+  
+}else if(potvalue>800 && potvalue<=1023){
+    digitalWrite(led1pin,HIGH);
+    digitalWrite(led2pin,HIGH);
+    digitalWrite(led3pin,HIGH);
+    digitalWrite(led4pin,HIGH);
+    
+  }else{
+    digitalWrite(led1pin,LOW);
+    digitalWrite(led2pin,LOW);
+    digitalWrite(led3pin,LOW);
+    digitalWrite(led4pin,LOW);
+}
+  
+}
+
+Link-https://www.tinkercad.com/things/dAsDZSwHQEw-magnificent-waasa-jaban

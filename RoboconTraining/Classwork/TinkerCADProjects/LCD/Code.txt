@@ -1,0 +1,21 @@
+Link-https://www.tinkercad.com/things/fjOMPusTMZW-fantastic-sango-luulia
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x20, 16, 2); // Change to 0x3F if needed
+
+void setup()
+{
+  lcd.init();      
+  lcd.backlight(); 
+
+  lcd.setCursor(0, 0);
+  lcd.print("Hello");
+  lcd.setCursor(0, 1);
+  lcd.print("Geek");
+}
+
+void loop()
+{
+  
+}

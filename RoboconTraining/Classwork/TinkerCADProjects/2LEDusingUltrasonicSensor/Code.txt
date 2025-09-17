@@ -1,0 +1,46 @@
+Link-https://www.tinkercad.com/things/aOLYc0x1tCn-grand-uusam
+
+int trigPin = 9;
+int echoPin = 10;
+int led1Pin = 6;
+int led2Pin = 3;
+
+int duration;
+int distance;
+int brightness1;
+int brightness2;
+
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(led1Pin, OUTPUT);
+  pinMode(led2Pin,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+
+  distance = duration * 0.034 / 2;
+
+  brightness1 = map(distance, 0, 200, 255, 0);  
+  brightness1 = constrain(brightness1, 0, 255);
+  brightness2 = 255-brightness1;
+
+  analogWrite(led1Pin, brightness1);
+  analogWrite(led2Pin,brightness2);
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.print(" cm | Brightness: ");
+  Serial.println(brightness1);
+
+  delay(100);
+}

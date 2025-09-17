@@ -1,0 +1,116 @@
+
+
+int en1 = 6;
+int in1 = 4;
+int in2 = 5;
+
+int en2 = 3;
+int in3 = 9;
+int in4 = 10;
+
+int en3 = 11;
+int in5 = 13;
+int in6 = 12;
+char input;
+
+
+void setup()
+{
+  pinMode(en1, OUTPUT);
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+  
+  pinMode(en2, OUTPUT);
+  pinMode(in3,OUTPUT);
+  pinMode(in4,OUTPUT);
+  
+  pinMode(en3, OUTPUT);
+  pinMode(in5,OUTPUT);
+  pinMode(in6,OUTPUT);
+  
+  Serial.begin(9600);
+  Serial.println("Enter command : w for forward, s for backward, a for left, d for right");
+}
+
+void loop()
+{
+  if (Serial.available() > 0) {
+  input = Serial.read();        
+  Serial.print("Received: ");
+  Serial.println(input);
+  
+    if(input=='d'){
+   digitalWrite(in1,HIGH);
+   digitalWrite(in2,LOW);
+   analogWrite(en1,255);
+  
+  
+   digitalWrite(in3,HIGH);
+   digitalWrite(in4,LOW);
+   analogWrite(en2,255);
+  
+  
+   digitalWrite(in5,HIGH);
+   digitalWrite(in6,LOW);
+   analogWrite(en3,255);
+    
+   }else if(input=='a'){
+     
+   digitalWrite(in1,LOW);
+   digitalWrite(in2,HIGH);
+   analogWrite(en1,255);
+  
+  
+   digitalWrite(in3,LOW);
+   digitalWrite(in4,HIGH);
+   analogWrite(en2,255);
+  
+  
+   digitalWrite(in5,LOW);
+   digitalWrite(in6,HIGH);
+   analogWrite(en3,255);
+      
+    }else if(input=='w'){
+      
+   digitalWrite(in1,LOW);
+   digitalWrite(in2,HIGH);
+   analogWrite(en1,255);
+  
+  
+   digitalWrite(in3,HIGH);
+   digitalWrite(in4,LOW);
+   analogWrite(en2,255);
+  
+  
+   digitalWrite(in5,LOW);
+   digitalWrite(in6,LOW);
+   analogWrite(en3,0);
+      
+    
+    }else if(input=='s'){
+      
+   digitalWrite(in1,HIGH);
+   digitalWrite(in2,LOW);
+   analogWrite(en1,255);
+  
+  
+   digitalWrite(in3,LOW);
+   digitalWrite(in4,HIGH);
+   analogWrite(en2,255);
+  
+  
+   digitalWrite(in5,LOW);
+   digitalWrite(in6,LOW);
+   analogWrite(en3,0);  
+    
+    }else{
+    
+      Serial.println("Invalid Input");
+      
+    }
+    
+  }
+}
+
+	
+Link-https://www.tinkercad.com/things/g5Z3d2uk007-fantastic-lappi-fulffy
